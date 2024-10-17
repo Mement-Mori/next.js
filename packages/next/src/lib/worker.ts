@@ -55,6 +55,7 @@ export class Worker {
             NODE_OPTIONS: formatNodeOptions(nodeOptions),
           } as any,
         },
+        maxRetries: 0,
       }) as JestWorker
       restartPromise = new Promise(
         (resolve) => (resolveRestartPromise = resolve)
@@ -79,6 +80,9 @@ export class Worker {
               logger.error(
                 `Static worker exited with code: ${code} and signal: ${signal}`
               )
+
+              // if a child process doesn't exit gracefully, we want to bubble up the exit code to the parent process
+              process.exit(code ?? 1)
             }
           })
 
