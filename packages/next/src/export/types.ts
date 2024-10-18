@@ -4,13 +4,9 @@ import type { RenderOptsPartial as PagesRenderOptsPartial } from '../server/rend
 import type { LoadComponentsReturnType } from '../server/load-components'
 import type { OutgoingHttpHeaders } from 'http'
 import type AmpHtmlValidator from 'next/dist/compiled/amphtml-validator'
-import type { FontConfig } from '../server/font-utils'
 import type { ExportPathMap, NextConfigComplete } from '../server/config-shared'
 import type { Revalidate } from '../server/lib/revalidate'
-import type {
-  NextEnabledDirectories,
-  RequestLifecycleOpts,
-} from '../server/base-server'
+import type { NextEnabledDirectories } from '../server/base-server'
 import type {
   SerializableTurborepoAccessTraceResult,
   TurborepoAccessTraceResult,
@@ -70,7 +66,6 @@ export interface ExportPageInput {
   buildExport?: boolean
   serverRuntimeConfig: { [key: string]: any }
   subFolders?: boolean
-  optimizeFonts: FontConfig
   optimizeCss: any
   disableOptimizedLoading: any
   parentSpanId: number
@@ -118,7 +113,6 @@ export type WorkerRenderOptsPartial = PagesRenderOptsPartial &
   AppRenderOptsPartial
 
 export type WorkerRenderOpts = WorkerRenderOptsPartial &
-  RequestLifecycleOpts &
   LoadComponentsReturnType
 
 export interface ExportAppOptions {
